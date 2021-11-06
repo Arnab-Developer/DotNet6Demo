@@ -12,6 +12,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("greet", (string name, IGreetService greetService) => greetService.GetGreetMessage(name));
+app.MapGet("greet", (string name, IGreetService greetService) =>
+{
+    try
+    {
+        return greetService.GetGreetMessage(name);
+    }
+    catch (ArgumentNullException)
+    {
+        return "Name can't be blank";
+    }
+});
 
 app.Run();
