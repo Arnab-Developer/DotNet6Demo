@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Api1Lib" />
+	<Using Include="Api1" />
+	<Using Include="Api1Lib" />
   </ItemGroup>
   
 </Project>
