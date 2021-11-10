@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -16,11 +18,11 @@ app.MapGet("greet", (string name, IGreetService greetService) =>
 {
     try
     {
-        return greetService.GetGreetMessage(name);
+        return Results.Ok(greetService.GetGreetMessage(name));
     }
     catch (ArgumentNullException)
     {
-        return "Name can't be blank";
+        return Results.StatusCode(500);
     }
 });
 

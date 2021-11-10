@@ -31,7 +31,7 @@ public class HomeController : Controller
         }
         else
         {
-            ViewData["Message"] = "No message found";
+            ViewData["Message"] = "Error";
         }
         return View();
     }
