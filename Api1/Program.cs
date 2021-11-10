@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +22,9 @@ app.MapGet("greet", (string name, IGreetService greetService) =>
     {
         return Results.StatusCode(500);
     }
-});
+})
+.WithName("Greet")
+.Produces<string>(StatusCodes.Status200OK)
+.Produces(StatusCodes.Status500InternalServerError);
 
 app.Run();
