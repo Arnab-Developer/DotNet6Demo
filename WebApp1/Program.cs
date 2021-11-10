@@ -1,23 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.ConfigureService();
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddHttpClient();
-builder.Services.Configure<Api1Settings>(builder.Configuration);
-
-var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-}
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+WebApplication app = builder.Build();
+app.ConfigureMiddleware();
 
 app.Run();
