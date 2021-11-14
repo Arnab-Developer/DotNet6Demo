@@ -12,18 +12,18 @@ public class GreetEndpointTest
     private static HttpContext CreateMockHttpContext() =>
         new DefaultHttpContext
         {
-            // RequestServices needs to be set so the IResult implementation can log.
             RequestServices = new ServiceCollection().AddLogging().BuildServiceProvider(),
             Response =
             {
-                // The default response body is Stream.Null which throws away anything that is written to it.
-                Body = new MemoryStream(),
+                Body = new MemoryStream()
             },
         };
 
     [Fact]
     public async Task Can_GetMessage_ReturnProperMessage()
     {
+        // Got the unit test idea from https://github.com/dotnet/aspnetcore/issues/37502
+
         IGreetService greetService = new GreetService();
         IResult result = GreetEndpointExtensions.GetMessage("Test User", greetService);
         HttpContext mockHttpContext = CreateMockHttpContext();
