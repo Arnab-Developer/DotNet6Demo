@@ -1,6 +1,6 @@
 ﻿namespace Api1;
 
-public static class GreetEndpointExtensions
+internal static class GreetEndpointExtensions
 {
     public static void MapGreetEndPoints(this IEndpointRouteBuilder app) =>
         app.MapGet("greet", GetMessage)
