@@ -27,7 +27,7 @@
 
 	<ItemGroup>
 		<Using Include="Xunit" />
-		<Using Include="Api1" />
+		<Using Include="Api1.EndPoints" />
 		<Using Include="Api1Lib" />
 		<Using Include="System" />
 	</ItemGroup>

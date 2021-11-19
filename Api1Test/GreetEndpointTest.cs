@@ -27,7 +27,8 @@ public class GreetEndpointTest
         Mock<IGreetService> greetServiceMock = new();
         greetServiceMock.Setup(s => s.GetGreetMessage(It.IsAny<string>())).Returns("Hello Test User");
 
-        IResult result = GreetEndpointExtensions.GetMessage("Test User", greetServiceMock.Object);
+        IGreetEndPoint greetEndPoint = new GreetEndPoint(greetServiceMock.Object);
+        IResult result = greetEndPoint.GetMessage("Test User");
         HttpContext mockHttpContext = CreateMockHttpContext();
         await result.ExecuteAsync(mockHttpContext);
         mockHttpContext.Response.Body.Position = 0;
@@ -43,7 +44,8 @@ public class GreetEndpointTest
         Mock<IGreetService> greetServiceMock = new();
         greetServiceMock.Setup(s => s.GetGreetMessage(string.Empty)).Throws<ArgumentNullException>();
 
-        IResult result = GreetEndpointExtensions.GetMessage(string.Empty, greetServiceMock.Object);
+        IGreetEndPoint greetEndPoint = new GreetEndPoint(greetServiceMock.Object);
+        IResult result = greetEndPoint.GetMessage(string.Empty);
         HttpContext mockHttpContext = CreateMockHttpContext();
         await result.ExecuteAsync(mockHttpContext);
         mockHttpContext.Response.Body.Position = 0;

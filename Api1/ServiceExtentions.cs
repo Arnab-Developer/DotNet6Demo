@@ -6,5 +6,6 @@ internal static class ServiceExtentions
         services
             .AddEndpointsApiExplorer()
             .AddSwaggerGen()
-            .AddTransient(typeof(IGreetService), typeof(GreetService));
+            .AddTransient(typeof(IGreetService), typeof(GreetService))
+            .AddTransient(typeof(IGreetEndPoint), typeof(GreetEndPoint));
 }
