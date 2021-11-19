@@ -1,4 +1,4 @@
-﻿namespace Api1;
+﻿namespace Api1.EndPoints;
 
 internal static class GreetEndpointExtensions
 {
